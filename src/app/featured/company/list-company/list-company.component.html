@@ -1,0 +1,36 @@
+<div style="display: block;">
+    <h5 style="float: left;">Agency Name: {{agency?.name}} </h5>
+    <h5 style="float: right;">User Name: </h5>
+</div>
+
+<table class="table table-bordered table-hover">
+
+    <thead>
+        <tr>
+            <th>Company Id</th>
+            <th>Company Name</th>
+            <th>Company Contact</th>
+            <th>Company Email Id</th>
+            <th>Company City</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr *ngFor="let company of agency?.companies">
+            <td>{{company.company_id}}</td>
+            <td>{{company.name}}</td>
+            <td>{{company.contact}}</td>
+            <td>{{company.email}}</td>
+            <td>{{company.currentAddress.city}}</td>
+            <td class="mr-auto">
+                <a><button [routerLink]="['view',company_id]" class="btn btn-primary ">View</button></a>
+                <a><button [routerLink]="['update',company_id]" class="btn btn-warning ml-5">Update</button></a>
+                <a><button [routerLink]="['delete',company_id]" class="btn btn-danger ml-5">Delete</button></a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<div>
+    <button style="display: block; margin: auto;" class="btn btn-success" [routerLink]="['company', id]">Add Company</button>
+</div>

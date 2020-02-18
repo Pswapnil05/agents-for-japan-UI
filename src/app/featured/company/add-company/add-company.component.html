@@ -1,0 +1,46 @@
+<div class="container-fluid">
+    <h5>Add Company Reactive form</h5>
+    <form [formGroup]="addCompanyForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <label >Company Name</label>
+            <input [class.is-invalid]="name.invalid && name.touched"
+                formControlName="name" type="text" class="form-control" >
+            <!-- <small [class.d-none]="addCompanyForm.get('name').ivalid || addCompanyForm.get('name').untouched"
+                class="text-danger">Name is required</small>     -->
+
+            <div *ngIf="name.invalid && name.touched">
+                <small *ngIf="name.errors?.required" class="text-danger">Name is required</small>
+                <small *ngIf="name.errors?.minlength" class="text-danger">Name must be at least 4 characters</small>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label >Company Contact</label>
+            <input formControlName="contact" type="text" class="form-control"> 
+        </div>
+
+        <div class="form-group">
+            <label >Company Email Id</label>
+            <input formControlName="email" type="text" class="form-control" >
+        </div>
+
+        <div formGroupName="currentAddress">
+            <div class="form-group">
+                <label >City</label>
+                <input formControlName="city" type="text" class="form-control" >
+            </div>
+            <div class="form-group">
+                <label >State</label>
+                <input formControlName="state" type="text" class="form-control" >
+            </div>
+            <div class="form-group">
+                <label >Postal Code</label>
+                <input formControlName="zipCode" type="text" class="form-control" >
+            </div>
+        </div>
+
+        <button [disabled]="!addCompanyForm.valid" type="submit" class="btn btn-primary">Add Company</button>
+        <button type="submit" class="btn btn-secondary ml-2" (click)="loadApiData()">Load API data</button>
+    </form>
+    {{addCompanyForm.value | json}}
+</div>

@@ -1,0 +1,31 @@
+<div class="container-fluid gradient">
+    <div class="row">
+        <div class="col-md-3 mx-auto">
+            <form>
+                
+                <div class="form-group" >
+                    <label for="agency" class="control-label">Agency list (select one):</label>
+                    <select  id="agency" (change)="getUsers($event.target.value)" class="form-control mb-4">
+                        <option >Select Agency</option>    
+                        <option  *ngFor="let agency of agencyList" [value]="agency.agency_code">
+                            {{agency.name}}
+                        </option>
+                    </select>
+                </div>
+              
+                <div class="form-group">
+                    <label for="user" class="control-label">User list (select one):</label>
+                    <select id="user" class="form-control" (change)="userChange($event.target.value)">
+                        <option>Select User</option>    
+                        <option *ngFor="let user of userList" [value]="user.user_id">
+                            {{user.name}}
+                        </option>
+                    </select>
+                </div>  
+
+              
+                <button [disabled]="agencyFlag || userFlag" type="submit" class="btn btn-primary" [routerLink]="['companylist', id]">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
